@@ -26,17 +26,39 @@ def echelon_reduit(A, b):
                         b[i] -= b[r] * A[i, j]
                         A[i] -= A[r] * A[i, j]
 
+def solutions(A, b):
+    var('x', 'y', 'z', 't', 'u')
+    T = [x, y, z, t, u]
+    echelon_reduit(A, b)
+    s = Matrix(SR, A.ncols(), 1)
+    for k in range(s.nrows()):
+        if k < b.nrows():
+            s[k] = b[k]
+        else:
+            s[k] = T[k]
+    for i in range(A.nrows()):
+        for j in range(i+1, A.ncols()):
+            if A[i, j] != 0:
+                s[i, 0] -= A[i, j]*T[j]
+    print("")
+    print(A)
+    print("")
+    print(b)
+    print("")
+    print(s)
+
+
+
 m = 3
 n = 4
-A = Matrix(QQ, m, n, [[0, -1, 2, 13],
-                      [1, -2, 3, 17],
-                      [-1, 3, -3, -20]])
-b = Matrix(QQ, 3, 1, [5, 4, -1])
+A = Matrix(QQ, m, n, [[2, 13, 7, 3],
+                      [4, 7, 9, 1],
+                      [6, 14, 5, 11]])
+b = Matrix(QQ, 3, 1, [1, 13, 1])
 # A = Matrix(QQ, m, [[2, -1, 0],
 #                    [-1, 2, -1],
 #                    [0, -1, 2]])
 print(A)
-echelon_reduit(A, b)
 print("")
-print(A)
 print(b)
+solutions(A, b)
