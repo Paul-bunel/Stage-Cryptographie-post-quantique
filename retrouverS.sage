@@ -37,5 +37,5 @@ for e2 in MatrixSpace(Integers(2*borne+1), m, 1):
     except:
         pass
 
-#Complexité boucle principale : O((2B+1)^m)
-#Complexité algo : prendre en compte complexité pour tirer une matrice + pour résoudre le système
+#Complexite boucle principale : O(((2B+1)^m)mn²)
+#Complexite algo : prendre en compte complexite pour tirer une matrice + pour resoudre le systeme
